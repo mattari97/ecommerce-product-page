@@ -5,9 +5,21 @@ interface Props {
 }
 
 export function clickOutside(element: HTMLElement, props: Props) {
-  let listening = false;
+  let listening = false,
+    childs: HTMLElement[] = [];
+
+  const addChildNode = (node: HTMLElement) => childs.push(node);
+  function getAllChildNodes(element: HTMLElement) {
+    for (let i = 0; i < element.childNodes.length; i++) {
+      const node = element.childNodes[i] as HTMLElement;
+      addChildNode(node);
+      getAllChildNodes(node);
+    }
+  }
+  getAllChildNodes(element);
+
   function onClick(e: MouseEvent) {
-    if (!element.contains(e.target as Node)) {
+    if (!childs.includes(e.target as HTMLElement)) {
       props.callback();
     }
   }
