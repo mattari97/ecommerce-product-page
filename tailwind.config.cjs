@@ -22,6 +22,7 @@ module.exports = {
       },
       white: "hsl(0, 0%, 100%)",
       black: "hsl(0, 0%, 0%)",
+      divider: "hsla(220, 14%, 75%, 0.3)",
     },
     extend: {
       fontFamily: {
