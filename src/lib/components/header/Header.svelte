@@ -13,7 +13,7 @@
   <Menu />
   <Cart />
   <!-- Avatar -->
-  <a href="/" aria-label="Profile" class="p-2 -mx-2 md:p-0 md:m-0 rounded-full md:relative md:hover-outline">
+  <a href="/" aria-label="Profile" class="p-1 -mx-1 md:p-0 md:m-0 rounded-full md:relative md:hover-outline">
     <img src="/images/image-avatar.png" alt="" class="w-7 sm:w-8 md:w-12 rounded-full" />
   </a>
 </header>
