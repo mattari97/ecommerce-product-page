@@ -1,4 +1,4 @@
-<footer class="text-xs px-6 py-4 text-neutral-200 text-center ">
+<footer class="text-xs px-6 py-4 text-neutral-200 text-center mt-auto">
   Challenge by <a
     href="https://www.frontendmentor.io?ref=challenge"
     target="_blank"
