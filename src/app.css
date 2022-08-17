@@ -18,4 +18,8 @@
   .hover-outline {
     @apply after:absolute after:bg-primary after:-inset-0.5 after:-z-10 after:rounded-full after:opacity-0 hover:after:opacity-100 after:transition-opacity after:duration-300;
   }
+  /** Pagination Disabled **/
+  .pagination-disabled {
+    @apply relative ring-2 ring-primary before:block before:absolute before:inset-0 before:bg-primary-pale/50;
+  }
 }
