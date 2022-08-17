@@ -1,6 +1,7 @@
 interface ProductImage {
   full: string;
   thumbnail: string;
+  alt: string;
 }
 
 export interface Product {
@@ -8,7 +9,7 @@ export interface Product {
   name: string;
   description: string;
   price: number;
-  reduction: number;
+  reduction?: number;
   images: ProductImage[];
 }
 
