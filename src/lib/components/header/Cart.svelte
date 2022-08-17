@@ -35,7 +35,7 @@
   <div
     class:opacity-0={!$appStore.cartOpen}
     class:pointer-events-none={!$appStore.cartOpen}
-    class="bg-white absolute top-16 md:top-20 right-0 m-2 md:mx-0 min-h-[250px] rounded-lg shadow-lg leading-none flex flex-col transition-opacity duration-300 w-[min(calc(100vw-16px),380px)] 2xl:translate-x-1/2 2xl:right-1/2 2xl:top-[50px]"
+    class="bg-white absolute top-16 md:top-20 right-0 m-2 md:mx-0 min-h-[250px] rounded-lg shadow-lg leading-none flex flex-col transition-opacity duration-300 w-[min(calc(100vw-16px),380px)] 2xl:translate-x-1/2 2xl:right-1/2 2xl:top-[50px] z-50"
   >
     <div class="p-6 font-bold border-b border-divider">
       <span>Cart</span>
