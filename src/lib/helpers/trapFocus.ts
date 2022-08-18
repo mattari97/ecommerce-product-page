@@ -1,5 +1,5 @@
 // Config
-const focusableSelectors = "a[href]:not([disabled='true']), button:not([disabled='true'])";
+const focusableSelectors = "a[href]:not([disabled='true']), button:not([disabled='true']), [tabIndex]";
 
 interface Props {
   toggleElement: HTMLElement;
@@ -53,7 +53,7 @@ export function trapFocus(element: HTMLElement, props: Props) {
       props = newProps;
       props.shouldTrap ? start() : stop();
     },
-    endTrap() {
+    destroy() {
       stop();
     },
   };
