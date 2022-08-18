@@ -90,7 +90,8 @@
             data-slider-pagination={index}
             class:pagination-disabled={index === 0}
             tabindex={isOpen ? 0 : -1}
-            class="rounded-xl overflow-hidden cursor-pointer transition-all"
+            aria-label="Go to {alt}"
+            class="rounded-xl overflow-hidden cursor-pointer transition-all hover:opacity-50 duration-300"
           >
             <img src="/images/{thumbnail}" {alt} class="w-full aspect-square" />
           </li>
