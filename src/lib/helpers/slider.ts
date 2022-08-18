@@ -11,17 +11,28 @@ export function slider(element: HTMLElement) {
 
   const enableAllBtns = () => {
     prevBtn.removeAttribute("disabled");
+    prevBtn.removeAttribute("aria-disabled");
     nextBtn.removeAttribute("disabled");
+    nextBtn.removeAttribute("aria-disabled");
   };
 
-  const enableAllPaginationEls = () => paginationEls.forEach((el) => el.classList.remove("pagination-disabled"));
+  const enableAllPaginationEls = () =>
+    paginationEls.forEach((el) => {
+      el.classList.remove("pagination-disabled");
+      el.removeAttribute("aria-disabled");
+      el.style.cursor = "pointer";
+    });
 
   const handleDisableBtn = () => {
     if (currIndex === 0) prevBtn.setAttribute("disabled", "true");
     if (currIndex === maxIndex) nextBtn.setAttribute("disabled", "true");
   };
 
-  const handleDisablePagination = () => paginationEls[currIndex].classList.add("pagination-disabled");
+  const handleDisablePagination = () => {
+    paginationEls[currIndex].classList.add("pagination-disabled");
+    paginationEls[currIndex].style.cursor = "auto";
+    paginationEls[currIndex].setAttribute("aria-disabled", "true");
+  };
 
   const updateIndex = (event: Event) => {
     if (event.currentTarget === prevBtn || event.currentTarget === nextBtn) {
@@ -31,8 +42,6 @@ export function slider(element: HTMLElement) {
     } else {
       const newIndex = parseInt((event.currentTarget as HTMLElement).dataset.sliderPagination as string);
       if (newIndex === currIndex) return false;
-      paginationEls[currIndex].classList.remove("pagination-disabled");
-      paginationEls[newIndex].classList.add("pagination-disabled");
       currIndex = newIndex;
     }
     return true;
@@ -42,6 +51,7 @@ export function slider(element: HTMLElement) {
 
   const move = (e: Event) => {
     if (moving || updateIndex(e) === false) return;
+    moving = true;
     enableAllBtns();
     enableAllPaginationEls();
     translate();
