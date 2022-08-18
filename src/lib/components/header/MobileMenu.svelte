@@ -1,9 +1,20 @@
 <script lang="ts">
+  import { onMount } from "svelte";
   import { goto } from "$app/navigation";
   import { appStore, toggleMobileMenu } from "$lib/stores";
   import { trapFocus } from "$lib/helpers";
   import { mainNavigationLinks } from "$lib/json";
   let hamburger: HTMLElement;
+
+  let els: HTMLElement[];
+  onMount(() => {
+    els = [document.documentElement, document.body];
+  });
+  const togglePageScroll = (els: HTMLElement[], shouldDisable: boolean) =>
+    shouldDisable
+      ? els.forEach((el) => el.classList.add("overflow-y-hidden"))
+      : els.forEach((el) => el.classList.remove("overflow-y-hidden"));
+  $: !!els && togglePageScroll(els, $appStore.mobileMenuOpen);
 
   const onNavigate = (href: string) => {
     toggleMobileMenu();
@@ -19,7 +30,7 @@
     aria-controls="menuItems"
     disabled={$appStore.mobileMenuOpen}
     bind:this={hamburger}
-    on:click|stopPropagation={toggleMobileMenu}
+    on:click={toggleMobileMenu}
     class="p-2 -mx-2 text-neutral-300 hover:text-neutral-400 transition-colors duration-300"
   >
     <svg width="16" height="15" xmlns="http://www.w3.org/2000/svg">
@@ -31,14 +42,14 @@
     on:click|stopPropagation={toggleMobileMenu}
     class:opacity-0={!$appStore.mobileMenuOpen}
     class:pointer-events-none={!$appStore.mobileMenuOpen}
-    class="bg-black/50 absolute top-0 left-0 w-full h-screen transition-opacity duration-300 z-50 cursor-pointer"
+    class="bg-black/50 fixed top-0 left-0 w-full h-screen transition-opacity duration-300 z-50 cursor-pointer"
   />
   <!-- Navigation -->
   <div
     use:trapFocus={{ shouldTrap: $appStore.mobileMenuOpen, closeCallback: toggleMobileMenu, toggleElement: hamburger }}
     class:translate-x-56={$appStore.mobileMenuOpen}
     class:opacity-0={!$appStore.mobileMenuOpen}
-    class="bg-white absolute top-0 -left-56 h-screen w-56 p-[16.5px] space-y-[16.5px] transition-all duration-300 z-50"
+    class="bg-white fixed top-0 -left-56 h-screen w-56 p-[16.5px] space-y-[16.5px] transition-all duration-300 z-50"
   >
     <!-- Close Btn-->
     <button
