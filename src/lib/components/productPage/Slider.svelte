@@ -1,30 +1,35 @@
 <script lang="ts">
   import { getProductById, slider } from "$lib/helpers";
+  import Lightbox from "./Lightbox.svelte";
   export let productId: string; // Props
   $: slides = getProductById(productId).images;
 </script>
 
-<div use:slider class="lg:max-w-[30rem]">
-  <!-- Previous -->
-  <div data-slider-wrapper class="relative w-full max-h-96 lg:max-h-full lg:rounded-xl overflow-hidden">
+<section use:slider class="lg:max-w-[30rem]">
+  <div data-slider-wrapper class="relative w-full max-h-[28rem] lg:max-h-full lg:rounded-xl overflow-hidden">
+    <!-- Lightbox -->
+    <div class="hidden lg:block absolute top-4 right-4 z-10">
+      <Lightbox {productId} />
+    </div>
+    <!-- Previous -->
     <button
       aria-label="Previous slide"
       disabled
       data-slider-prev
-      class="lg:hidden absolute left-4 top-1/2 -translate-y-1/2 px-3 aspect-square grid place-content-center bg-neutral-100 rounded-full z-10 disabled:bg-neutral-100/25 transition-colors duration-300"
+      class="lg:hidden absolute left-4 top-1/2 -translate-y-1/2 px-3 aspect-square grid place-content-center bg-neutral-100 hover:enabled:text-primary rounded-full z-10 disabled:bg-neutral-100/25 transition-colors duration-300"
     >
       <svg class="w-3 pr-0.5" viewBox="0 0 12 18" xmlns="http://www.w3.org/2000/svg">
-        <path d="M11 1 3 9l8 8" stroke="#1D2026" stroke-width="3" fill="none" fill-rule="evenodd" />
+        <path d="M11 1 3 9l8 8" stroke="currentColor" stroke-width="3" fill="none" fill-rule="evenodd" />
       </svg>
     </button>
     <!-- Next -->
     <button
       aria-label="Next slide"
       data-slider-next
-      class="lg:hidden absolute right-4 top-1/2 -translate-y-1/2 px-3 aspect-square grid place-content-center bg-neutral-100 rounded-full z-10 disabled:bg-neutral-100/25 transition-colors duration-300"
+      class="lg:hidden absolute right-4 top-1/2 -translate-y-1/2 px-3 aspect-square grid place-content-center bg-neutral-100 hover:enabled:text-primary rounded-full z-10 disabled:bg-neutral-100/25 transition-colors duration-300"
     >
       <svg class="w-3 pl-0.5" viewBox="0 0 12 18" xmlns="http://www.w3.org/2000/svg">
-        <path d="m2 1 8 8-8 8" stroke="#1D2026" stroke-width="3" fill="none" fill-rule="evenodd" />
+        <path d="m2 1 8 8-8 8" stroke="currentColor" stroke-width="3" fill="none" fill-rule="evenodd" />
       </svg>
     </button>
     <!-- Inner slider-->
@@ -32,7 +37,7 @@
       <!-- Slides -->
       {#each slides as { full, alt }, index (index)}
         <li class="basis-full shrink-0">
-          <img src="/images/{full}" {alt} class="w-full object-cover object-center" />
+          <img src="/images/{full}" {alt} class="w-full object-cover" />
         </li>
       {/each}
     </ul>
@@ -50,4 +55,4 @@
       </li>
     {/each}
   </ul>
-</div>
+</section>
