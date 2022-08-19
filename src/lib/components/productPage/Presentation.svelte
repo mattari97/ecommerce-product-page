@@ -1,6 +1,7 @@
 <script lang="ts">
   import type { Product } from "$lib/types";
   import { addToCart } from "$lib/stores";
+  import QuantityPicker from "./QuantityPicker.svelte";
 
   export let product: Product;
   $: price = (product.reduction ? product.price * product.reduction : product.price).toFixed(2);
@@ -40,32 +41,7 @@
   </div>
   <div class="flex flex-col gap-4 sm:gap-6 xs:flex-row xs:items-center">
     <!-- Quantity Picker-->
-    <div class="flex justify-between bg-neutral-100 rounded-lg overflow-hidden p-1 xs:min-w-[160px]">
-      <button
-        aria-label="Decrement quantity"
-        disabled={cartQuantity === 0}
-        on:click={onDecrement}
-        class="text-primary hover:enabled:text-primary/75 transition-colors duration-300 p-3 disabled:text-neutral-200 rounded-lg"
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 aspect-auto" viewBox="0 0 20 20" fill="currentColor">
-          <path fill-rule="evenodd" d="M5 10a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1z" clip-rule="evenodd" />
-        </svg>
-      </button>
-      <span class="self-center font-bold">{cartQuantity}</span>
-      <button
-        aria-label="Increment quantity"
-        on:click={onIncrement}
-        class="text-primary hover:text-primary/75 transition-colors duration-300 p-3 rounded-lg"
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 aspect-auto" viewBox="0 0 20 20" fill="currentColor">
-          <path
-            fill-rule="evenodd"
-            d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-            clip-rule="evenodd"
-          />
-        </svg>
-      </button>
-    </div>
+    <QuantityPicker {cartQuantity} on:decrement={onDecrement} on:increment={onIncrement} />
     <!-- CTA -->
     <button
       disabled={cartQuantity === 0}
