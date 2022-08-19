@@ -2,15 +2,22 @@
   import { getProductById, slider } from "$lib/helpers";
   import Lightbox from "./Lightbox.svelte";
   export let productId: string; // Props
+
+  let lightboxToggleEl: HTMLElement;
+  let lightboxOpen: boolean = false;
+  const toggleLightboxOpen = () => (lightboxOpen = !lightboxOpen);
   $: slides = getProductById(productId).images;
 </script>
 
 <section use:slider class="lg:max-w-[30rem]">
-  <div data-slider-wrapper class="relative w-full max-h-[28rem] lg:max-h-full lg:rounded-xl overflow-hidden">
-    <!-- Lightbox -->
-    <div class="hidden lg:block absolute top-4 right-4 z-10">
-      <Lightbox {productId} />
-    </div>
+  <div
+    data-slider-wrapper
+    tabindex="0"
+    on:click={toggleLightboxOpen}
+    bind:this={lightboxToggleEl}
+    on:keydown|preventDefault={(e) => e.key === "Enter" && toggleLightboxOpen()}
+    class="relative w-full max-h-[28rem] lg:max-h-full lg:rounded-xl overflow-hidden cursor-pointer"
+  >
     <!-- Previous -->
     <button
       aria-label="Previous slide"
@@ -57,3 +64,4 @@
     {/each}
   </ul>
 </section>
+<Lightbox {productId} isOpen={lightboxOpen} toggleCallBack={toggleLightboxOpen} toggleElement={lightboxToggleEl} />

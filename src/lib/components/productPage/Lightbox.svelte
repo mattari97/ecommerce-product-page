@@ -4,31 +4,16 @@
   export let productId: string; // Props
   $: slides = getProductById(productId).images;
 
-  let isOpen: boolean;
-  let toggleElement: HTMLElement;
-  const toggleLightbox = () => (isOpen = !isOpen);
+  export let isOpen: boolean;
+  export let toggleElement: HTMLElement;
+  export let toggleCallBack: () => void;
 </script>
-
-<button
-  bind:this={toggleElement}
-  on:click={toggleLightbox}
-  aria-label="Open lightbox"
-  class="bg-neutral-100 p-2 rounded-full hover:text-primary transition-colors duration-300"
->
-  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-    <path
-      fill-rule="evenodd"
-      d="M3 4a1 1 0 011-1h4a1 1 0 010 2H6.414l2.293 2.293a1 1 0 01-1.414 1.414L5 6.414V8a1 1 0 01-2 0V4zm9 1a1 1 0 110-2h4a1 1 0 011 1v4a1 1 0 11-2 0V6.414l-2.293 2.293a1 1 0 11-1.414-1.414L13.586 5H12zm-9 7a1 1 0 112 0v1.586l2.293-2.293a1 1 0 011.414 1.414L6.414 15H8a1 1 0 110 2H4a1 1 0 01-1-1v-4zm13-1a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 110-2h1.586l-2.293-2.293a1 1 0 011.414-1.414L15 13.586V12a1 1 0 011-1z"
-      clip-rule="evenodd"
-    />
-  </svg>
-</button>
 
 {#if isOpen}
   <div
     transition:blur={{ duration: 300 }}
-    use:trapFocus={{ shouldTrap: isOpen, closeCallback: toggleLightbox, toggleElement }}
-    on:click|stopPropagation|self={toggleLightbox}
+    use:trapFocus={{ shouldTrap: isOpen, closeCallback: toggleCallBack, toggleElement }}
+    on:click|stopPropagation|self={toggleCallBack}
     class="flex fixed inset-0 justify-center items-center bg-neutral-400/90 z-50 transition-opacity duration-300 cursor-pointer"
   >
     <div use:slider class="max-w-[32rem]">
@@ -36,7 +21,7 @@
         <!-- Close -->
         <button
           aria-label="Close lightbox"
-          on:click={toggleLightbox}
+          on:click={toggleCallBack}
           class="mb-1 absolute bottom-full -right-2 z-50 text-neutral-100 hover:text-primary transition-colors duration-300 rounded-full"
         >
           <svg
