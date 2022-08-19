@@ -55,6 +55,14 @@ Users should be able to:
 
 ### What I learned
 
+#### Create union from array of string
+
+```ts
+const localStorageHash = "553d2d4d-edc3-441a-b570-22af983bf768";
+const localStorageKeys = [`${localStorageHash}-cart`] as const;
+export type LocalStorageKey = typeof localStorageKeys[number];
+```
+
 #### Trap focus
 
 Implemented this feature thinking about accessibility. I used it to make sure that user can't "leave" the menu or the lighbox with keyboard navigation when it is visible as well as focusing the element used to open the modal when closing it & being able to close it with Escape key.
