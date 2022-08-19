@@ -37,7 +37,7 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Go to solution](https://www.frontendmentor.io/solutions/rest-countries-api-w-svelkit-ts-tailwind-axios-and-ssr-prefetching-i4wDMW6EGE)
+- Solution URL: [Go to solution](https://www.frontendmentor.io/solutions/ecommerce-product-page-w-sveltekit-tailwind-and-typescript-rOBF4Socjj)
 - Live Site URL: [Go to live site](https://ecommerce-product-page-roan.vercel.app/)
 
 ## My process
