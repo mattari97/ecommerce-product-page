@@ -38,7 +38,7 @@
         <!-- Previous -->
         <button
           aria-label="Previous slide"
-          disabled={true}
+          disabled
           data-slider-prev
           class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 px-4 aspect-square grid place-content-center bg-neutral-100 hover:enabled:text-primary rounded-full z-50 disabled:bg-neutral-100/25 transition-colors duration-300"
         >
