@@ -1,20 +1,11 @@
 import { writable } from "svelte/store";
 import type { AppStore, Product } from "$lib/types";
-import { products } from "$lib/json";
 import { getInitialData, persistData } from "$lib/helpers/localstorage";
 
 const cartDefaultValue = {
-  products: [
-    {
-      id: products[0].id,
-      name: products[0].name,
-      price: products[0].reduction ? products[0].price * products[0].reduction : products[0].price,
-      quantity: 3,
-      thumbnail: products[0].images[0].thumbnail,
-    },
-  ],
-  totalPrice: 375,
-  totalQuantity: 3,
+  products: [],
+  totalPrice: 0,
+  totalQuantity: 0,
 };
 
 export const appStore = writable<AppStore>({
