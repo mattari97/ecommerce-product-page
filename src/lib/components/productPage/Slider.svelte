@@ -14,7 +14,7 @@
 
 <svelte:window bind:innerWidth />
 
-<section use:slider class="lg:max-w-[30rem]">
+<div use:slider class="lg:max-w-[30rem]">
   <div
     data-slider-wrapper
     tabindex="0"
@@ -67,5 +67,5 @@
       </li>
     {/each}
   </ul>
-</section>
+</div>
 <Lightbox {productId} isOpen={lightboxOpen} toggleCallBack={toggleLightboxOpen} toggleElement={lightboxToggleEl} />
