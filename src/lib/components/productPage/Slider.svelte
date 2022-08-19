@@ -7,15 +7,20 @@
   let lightboxOpen: boolean = false;
   const toggleLightboxOpen = () => (lightboxOpen = !lightboxOpen);
   $: slides = getProductById(productId).images;
+
+  let innerWidth = 0;
+  $: lighboxActive = innerWidth >= 1024;
 </script>
+
+<svelte:window bind:innerWidth />
 
 <section use:slider class="lg:max-w-[30rem]">
   <div
     data-slider-wrapper
     tabindex="0"
-    on:click={toggleLightboxOpen}
+    on:click={() => lighboxActive && toggleLightboxOpen()}
     bind:this={lightboxToggleEl}
-    on:keydown|preventDefault={(e) => e.key === "Enter" && toggleLightboxOpen()}
+    on:keydown|preventDefault={(e) => e.key === "Enter" && lighboxActive && toggleLightboxOpen()}
     class="relative w-full max-h-[28rem] lg:max-h-full lg:rounded-xl overflow-hidden cursor-pointer"
   >
     <!-- Previous -->

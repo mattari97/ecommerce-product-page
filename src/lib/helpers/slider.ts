@@ -50,6 +50,7 @@ export function slider(element: HTMLElement) {
   const translate = () => (inner.style.transform = `translateX(-${currIndex * slideWidth}px)`);
 
   const move = (e: Event) => {
+    e.stopPropagation();
     if (moving || updateIndex(e) === false) return;
     moving = true;
     enableAllBtns();
