@@ -16,7 +16,7 @@
     on:click|stopPropagation|self={toggleCallBack}
     class="flex fixed inset-0 justify-center items-center bg-neutral-400/90 z-50 transition-opacity duration-300 cursor-pointer"
   >
-    <div use:slider class="max-w-[32rem]">
+    <div use:slider class="max-w-lg">
       <div class="relative">
         <!-- Close -->
         <button

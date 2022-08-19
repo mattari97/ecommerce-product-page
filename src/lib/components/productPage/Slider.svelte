@@ -14,7 +14,7 @@
 
 <svelte:window bind:innerWidth />
 
-<div use:slider class="lg:max-w-[30rem]">
+<div use:slider class="lg:max-w-md">
   <div
     data-slider-wrapper
     tabindex="0"
