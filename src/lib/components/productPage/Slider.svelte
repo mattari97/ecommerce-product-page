@@ -20,7 +20,12 @@
     tabindex="0"
     on:click={() => lighboxActive && toggleLightboxOpen()}
     bind:this={lightboxToggleEl}
-    on:keydown|preventDefault={(e) => e.key === "Enter" && lighboxActive && toggleLightboxOpen()}
+    on:keydown={(e) => {
+      if (e.key === "Enter" && lighboxActive) {
+        e.preventDefault();
+        toggleLightboxOpen();
+      }
+    }}
     class="relative w-full max-h-[28rem] lg:max-h-full lg:rounded-xl overflow-hidden cursor-pointer"
   >
     <!-- Previous -->
